@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class MqttdemoApplication
+class MqttDemoApplication
 
 fun main(args: Array<String>) {
-	runApplication<MqttdemoApplication>(*args)
+	runApplication<MqttDemoApplication>(*args)
 }
