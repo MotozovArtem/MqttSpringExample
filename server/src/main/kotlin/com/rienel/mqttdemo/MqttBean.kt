@@ -13,8 +13,8 @@ import org.springframework.integration.mqtt.core.MqttPahoClientFactory
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter
 import org.springframework.integration.mqtt.support.MqttHeaders
+import org.springframework.messaging.Message
 import org.springframework.messaging.MessageChannel
-import org.springframework.messaging.MessageHandler
 
 /**
  * TODO ArMotozov
@@ -44,11 +44,11 @@ class MqttBean @Autowired constructor(
 
 	@Bean
 	@ServiceActivator(inputChannel = "mqttInputChannel")
-	fun handler(): MessageHandler = MessageHandler {
-		val topic = it.headers[MqttHeaders.RECEIVED_TOPIC].toString()
+	fun handler(message: Message<Any>) {
+		val topic = message.headers[MqttHeaders.RECEIVED_TOPIC].toString()
 		if (topic == "testTopic") {
 			log.info("This is test topic")
 		}
-		log.info("Payload: {}", it.payload)
+		log.info("Payload: {}", message.payload)
 	}
 }
