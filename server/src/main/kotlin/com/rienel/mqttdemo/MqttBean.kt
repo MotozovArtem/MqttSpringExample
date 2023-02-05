@@ -1,5 +1,8 @@
 package com.rienel.mqttdemo
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import io.rienel.mqttdemo.TOPIC_CLIENT_COMPUTER
+import io.rienel.mqttdemo.model.ComputerStatus
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,8 +26,9 @@ import org.springframework.messaging.MessageChannel
  */
 @Configuration
 class MqttBean @Autowired constructor(
+	val objectMapper: ObjectMapper,
 	val configuration: MqttConfiguration,
-	val clientFactory: MqttPahoClientFactory
+	val clientFactory: MqttPahoClientFactory,
 ) {
 	companion object {
 		val log: Logger = LoggerFactory.getLogger(MqttBean::class.java)
@@ -35,20 +39,19 @@ class MqttBean @Autowired constructor(
 
 	@Bean
 	fun inbound(@Qualifier("mqttInputChannel") inputChannel: MessageChannel): MessageProducer =
-		MqttPahoMessageDrivenChannelAdapter(configuration.clientId, clientFactory, "#").apply {
+		MqttPahoMessageDrivenChannelAdapter(configuration.clientId, clientFactory, TOPIC_CLIENT_COMPUTER).apply {
 			setCompletionTimeout(5000)
 			setConverter(DefaultPahoMessageConverter())
 			setQos(2)
 			outputChannel = inputChannel
 		}
 
-	@Bean
 	@ServiceActivator(inputChannel = "mqttInputChannel")
-	fun handler(message: Message<Any>) {
+	fun handler(message: Message<*>) {
 		val topic = message.headers[MqttHeaders.RECEIVED_TOPIC].toString()
-		if (topic == "testTopic") {
-			log.info("This is test topic")
+		if (topic == TOPIC_CLIENT_COMPUTER) {
+			val computerStatus = objectMapper.readValue(message.payload.toString(), ComputerStatus::class.java)
+			log.info("Payload: \n{}", computerStatus)
 		}
-		log.info("Payload: {}", message.payload)
 	}
 }

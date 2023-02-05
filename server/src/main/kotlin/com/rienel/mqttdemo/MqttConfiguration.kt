@@ -12,7 +12,7 @@ import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory
  */
 @Configuration
 data class MqttConfiguration(
-	var host: String = "192.168.1.7",
+	var host: String = "localhost",
 	var port: Int = 1883,
 	var username: String = "user",
 	var password: String = "user",

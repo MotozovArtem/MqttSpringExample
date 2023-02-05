@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+	implementation(project(":model"))
 	implementation("io.moquette:moquette-broker:0.16") {
 		exclude("ch.qos.logback")
 		exclude("org.slf4j")
@@ -26,7 +27,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-integration")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.integration:spring-integration-http")

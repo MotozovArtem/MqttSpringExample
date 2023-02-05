@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	kotlin("jvm")
+	kotlin("jvm") version "1.7.22"
 }
 
 group = "com.rienel"
@@ -13,12 +13,7 @@ repositories {
 }
 
 dependencies {
-	implementation(project(":model"))
-	// https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
-	implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
-	// https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-
+	api("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
 
 }
 
