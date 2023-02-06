@@ -8,7 +8,7 @@
 
 ## Message Brokers
 
-Moquette - Embedded MQTT Message Broker. [GitHub](https://github.com/moquette-io/moquette), [Web page](https://mosquitto.org/)
+Moquette - Embedded MQTT Message Broker. [GitHub](https://github.com/moquette-io/moquette)
 
 
 ## Project Structure
