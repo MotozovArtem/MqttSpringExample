@@ -14,6 +14,6 @@ Moquette - Embedded MQTT Message Broker. [GitHub](https://github.com/moquette-io
 ## Project Structure
 
 Modules:
-* Client - contains CLI application that send messages to server
+* Client - contains CLI application that sends messages to server
 * Model - contains common classes for Client and Server
-* Server - contains Spring Boot Application that start embedded MQTT Broker and handling messages
+* Server - contains Spring Boot Application that starts embedded MQTT Broker and handling messages
