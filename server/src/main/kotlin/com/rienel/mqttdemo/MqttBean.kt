@@ -20,7 +20,7 @@ import org.springframework.messaging.Message
 import org.springframework.messaging.MessageChannel
 
 /**
- * TODO ArMotozov
+ * Configuration for Spring MQTT intergation. Declaring input channel and messages consumer.
  *
  * @since 1/26/2023
  */
